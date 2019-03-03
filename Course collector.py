@@ -17,4 +17,5 @@ while curPage < totalPage:
         totalPage = int(soup.find('li', class_='pager-current').text[5:])
     curPage += 1
     print("Onto page: " + str(curPage + 1))
+f.close()
 print("==============DONE==============")
