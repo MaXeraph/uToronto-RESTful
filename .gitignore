@@ -4,7 +4,7 @@ __pycache__/
 *$py.class
 
 #Unintended
-
+*.py
 # C extensions
 *.so
 
