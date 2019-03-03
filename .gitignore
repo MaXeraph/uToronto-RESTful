@@ -7,6 +7,7 @@ __pycache__/
 *.py
 # C extensions
 *.so
+/python-service-deployment
 
 # Distribution / packaging
 .Python
