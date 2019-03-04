@@ -1,13 +1,10 @@
 from flask_restful import Resource
 import sqlite3
-import os
-
-fileDir = os.path.dirname(os.path.realpath('__file__'))
 
 #For accessing the file in a folder contained in the current folder
 
 # Creates or opens a file called uToronto with a SQLite3 DB
-db = sqlite3.connect(os.path.join(fileDir, 'data\\uToronto.db'))
+db = sqlite3.connect('data/uToronto.db'))
 cursor = db.cursor()
 
 class Todo(Resource):
@@ -26,7 +23,7 @@ class Todo(Resource):
         course = cursor.fetchone()
 
         return course, 200
-        
+
         # except Exception as e:
         #     # Roll back any change if something goes wrong
         #     db.rollback()
