@@ -44,6 +44,7 @@ def insertDB(soup, course):
     parsedTitle = titleText[titleText.find(' ') + 1:]
     hours = soup.find('div', class_='field field-name-field-hours field-type-text field-label-inline clearfix')
     summary = soup.find('div', class_='field field-name-body field-type-text-with-summary field-label-hidden')
+    summary = summary.text.strip()
     prerecquisites = soup.find('div', class_='field field-name-field-prerequisite1 field-type-text-with-summary field-label-inline clearfix')
     exclusions = soup.find('div', class_='field field-name-field-exclusion1 field-type-text-with-summary field-label-inline clearfix')
     distribution = soup.find('div', class_='field field-name-field-distribution-req field-type-list-text field-label-inline clearfix')
