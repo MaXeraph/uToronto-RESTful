@@ -8,9 +8,11 @@ courseCollector.py
 dataCollection.py
 DBgenerator.py
 scrape.py
+my-venv/
+
 # C extensions
 *.so
-/python-service-deployment
+
 
 # Distribution / packaging
 .Python
