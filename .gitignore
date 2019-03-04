@@ -4,7 +4,10 @@ __pycache__/
 *$py.class
 
 #Unintended
-*.py
+courseCollector.py
+dataCollection.py
+DBgenerator.py
+scrape.py
 # C extensions
 *.so
 /python-service-deployment
