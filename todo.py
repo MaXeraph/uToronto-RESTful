@@ -19,6 +19,7 @@ class Todo(Resource):
 
     def get(self, code):
         try:
+            print(code)
             cursor.execute('''SELECT courseCode, title, hours, summary,
                                     prerecquisites, exclusions, distribution,
                                     breadth, program FROM courses WHERE courseCode=?''', (code,))
