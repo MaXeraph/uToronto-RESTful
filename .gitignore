@@ -4,9 +4,7 @@ __pycache__/
 *$py.class
 
 #Unintended
-courseCollector.py
-dataCollection.py
-DBgenerator.py
+
 scrape.py
 my-venv/
 
