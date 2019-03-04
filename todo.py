@@ -27,4 +27,4 @@ class Todo(Resource):
         except Exception as e:
             # Roll back any change if something goes wrong
             db.rollback()
-            return "Item not found for the id: {}".format(id), 404
+            return "Item not found for the course code: {}".format(code), 404
