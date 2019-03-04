@@ -4,7 +4,7 @@ import sqlite3
 #For accessing the file in a folder contained in the current folder
 
 # Creates or opens a file called uToronto with a SQLite3 DB
-db = sqlite3.connect('data/uToronto.db'))
+db = sqlite3.connect('data/uToronto.db')
 cursor = db.cursor()
 
 class Todo(Resource):
