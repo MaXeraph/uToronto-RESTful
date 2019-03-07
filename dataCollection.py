@@ -44,7 +44,6 @@ def insertDB(soup, course):
     parsedTitle = titleText[titleText.find(' ') + 1:]
     hours = soup.find('div', class_='field field-name-field-hours field-type-text field-label-inline clearfix')
     summary = soup.find('div', class_='field field-name-body field-type-text-with-summary field-label-hidden')
-    summary = summary.text.strip()
     prerecquisites = soup.find('div', class_='field field-name-field-prerequisite1 field-type-text-with-summary field-label-inline clearfix')
     exclusions = soup.find('div', class_='field field-name-field-exclusion1 field-type-text-with-summary field-label-inline clearfix')
     distribution = soup.find('div', class_='field field-name-field-distribution-req field-type-list-text field-label-inline clearfix')
@@ -58,12 +57,12 @@ def insertDB(soup, course):
                   VALUES(?,?,?,?,?,?,?,?,?)''', (course,
                                               parsedTitle if titleFind else "NULL",
                                               hours.text if hours else "NULL",
-                                              summary.text if summary else "NULL",
-                                              prerecquisites.text if prerecquisites else "NULL",
-                                              exclusions.text if exclusions else "NULL",
+                                              summary.text.strip() if summary else "NULL",
+                                              prerecquisites.text.strip() if prerecquisites else "NULL",
+                                              exclusions.text.strip() if exclusions else "NULL",
                                               distribution.text if distribution else "NULL",
                                               breadth.text if breadth else "NULL",
-                                              program.text if program else "NULL"))
+                                              program.text.strip() if program else "NULL"))
 
     db.commit()
     print("{0} inserted".format(course.split()))
