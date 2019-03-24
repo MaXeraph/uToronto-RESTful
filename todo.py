@@ -27,7 +27,7 @@ class Todo(Resource):
         # Making the message looks good
         resp = jsonify(message)
         # Returning the object
-        return resp
+        return resp, 200
 
         # except Exception as e:
         #     # Roll back any change if something goes wrong
