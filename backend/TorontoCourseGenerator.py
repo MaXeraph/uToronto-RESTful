@@ -2,13 +2,14 @@ import bs4 as bs
 import urllib.request
 import sqlite3
 import os
+import attributes
 
 fileDir = os.path.dirname(os.path.realpath('__file__'))
 
 #For accessing the file in a folder contained in the current folder
 
 # Creates or opens a file called uToronto with a SQLite3 DB
-db = sqlite3.connect(os.path.join(fileDir, 'data\\uToronto.db'))
+db = sqlite3.connect(os.path.join(fileDir, 'data\\' + attributes.torCourseDB))
 counter, total = 0,0
 invalids = []
 
@@ -29,7 +30,7 @@ cursor.execute('''
 db.commit()
 
 #First page
-f = open(os.path.join(fileDir, 'data\\courseList'), "r")
+f = open(os.path.join(fileDir, 'data\\' + attributes.torCourseList), "r")
 current = f.readline().strip()
 print(current)
 
