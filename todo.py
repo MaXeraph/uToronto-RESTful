@@ -1,10 +1,11 @@
 from flask_restful import Resource
 import sqlite3
+from backend import attributes
 
 #For accessing the file in a folder contained in the current folder
 
 # Creates or opens a file called uToronto with a SQLite3 DB
-db = sqlite3.connect('data/uToronto.db')
+db = sqlite3.connect('backend/data/' + attributes.torCourseDB)
 cursor = db.cursor()
 
 class Todo(Resource):
