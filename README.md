@@ -1,6 +1,6 @@
 # uToronto-RESTful
 Smart course look up 
 
-Query: https://uoft.maxpham.dev/get/(CourseCode)
+Query: http://uoft-courseapi.herokuapp.com/get/(CourseCode)
 
-Example: https://uoft.maxpham.dev/get/CSC263H1
+Example: http://uoft-courseapi.herokuapp.com/get/CSC263H1
