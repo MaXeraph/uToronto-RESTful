@@ -3,10 +3,11 @@ import sqlite3
 from backend import attributes
 import json
 
-#For accessing the file in a folder contained in the current folder
+# For accessing the file in a folder contained in the current folder
 
 # Creates or opens a file called uToronto with a SQLite3 DB
-db = sqlite3.connect('backend/data/' + attributes.torCourseDB)
+db = sqlite3.connect(
+    'backend/data/' + attributes.torCourseDB, check_same_thread=False)
 cursor = db.cursor()
 CourseListDir = open('backend/data/TORCoursesList')
 CourseList = []
@@ -27,19 +28,31 @@ class Todo(Resource):
         if code == "all":
             return json.dumps(CourseList)
 
-
         cursor.execute('''SELECT courseCode, title, hours, summary,
                                 prerecquisites, exclusions, distribution,
                                 breadth, program FROM courses WHERE courseCode=?''', (code,))
         course = cursor.fetchone()
+        if not course:
+            return "ERROR 404: resource not found", 404
 
-        return course, 200
-
+        re = {
+            "courseCode": course[0],
+            "title": course[1],
+            "hours": course[2],
+            "summary": course[3],
+            "prerecquisites": course[4],
+            "exclusions": course[5],
+            "distribution": course[6],
+            "breadth": course[7],
+            "program": course[8]
+        }
+        return re, 200
 
         # except Exception as e:
         #     # Roll back any change if something goes wrong
         #     db.rollback()
         #     return {"Item not found for the course code: {}".format(code)}, 200
+
 
 class Root(Resource):
     def get(self):
