@@ -29,7 +29,7 @@ class Todo(Resource):
             return json.dumps(CourseList)
 
         cursor.execute('''SELECT courseCode, title, hours, summary,
-                                prerequisites, exclusions, recommended, distribution,
+                                prerequisites, exclusions, recommend, distribution,
                                 breadth, program FROM courses WHERE courseCode=?''', (code,))
         course = cursor.fetchone()
         if not course:
