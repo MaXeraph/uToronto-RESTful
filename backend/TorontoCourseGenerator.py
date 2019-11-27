@@ -21,8 +21,9 @@ cursor.execute('''
     title TEXT,
     hours TEXT,
     summary TEXT ,
-    prerecquisites TEXT,
+    prerequisites TEXT,
     exclusions TEXT,
+    recommend TEXT,
     distribution TEXT,
     breadth TEXT,
     program TEXT)
@@ -53,16 +54,21 @@ def insertDB(soup, course):
         'div', class_='field field-name-body field-type-text-with-summary field-label-hidden')
     if summary:
         summary = summary.text.strip()
-    prerecquisites = soup.find(
+    prerequisites = soup.find(
         'div', class_='field field-name-field-prerequisite1 field-type-text-with-summary field-label-inline clearfix')
-    if (prerecquisites):
-        prerecquisites = prerecquisites.text.strip(
-        )[prerecquisites.text.strip().find(":") + 2:].strip()
+    if (prerequisites):
+        prerequisites = prerequisites.text.strip(
+        )[prerequisites.text.strip().find(":") + 2:].strip()
     exclusions = soup.find(
         'div', class_='field field-name-field-exclusion1 field-type-text-with-summary field-label-inline clearfix')
     if (exclusions):
         exclusions = exclusions.text.strip(
         )[exclusions.text.strip().find(":") + 2:].strip()
+    recommend = soup.find(
+        'div', class_='field field-name-field-recommended1 field-type-text-with-summary field-label-inline clearfix')
+    if (recommend):
+        recommend = recommend.text.strip(
+        )[recommend.text.strip().find(":") + 2:].strip()
     distribution = soup.find(
         'div', class_='field field-name-field-distribution-req field-type-list-text field-label-inline clearfix')
     if (distribution):
@@ -75,19 +81,20 @@ def insertDB(soup, course):
         'div', class_='field field-name-field-section-link field-type-text-with-summary field-label-inline clearfix')
     if (program):
         program = program.text.strip()[program.text.strip().find(":") + 2:]
-    ################
+    ######
 
     cursor = db.cursor()
-    cursor.execute('''INSERT INTO courses(courseCode, title, hours, summary, prerecquisites, exclusions, distribution, breadth, program)
-                  VALUES(?,?,?,?,?,?,?,?,?)''', (course,
-                                                 parsedTitle if titleFind else "NULL",
-                                                 hours if hours else "NULL",
-                                                 summary if summary else "NULL",
-                                                 prerecquisites if prerecquisites else "NULL",
-                                                 exclusions if exclusions else "NULL",
-                                                 distribution if distribution else "NULL",
-                                                 breadth if breadth else "NULL",
-                                                 program if program else "NULL"))
+    cursor.execute('''INSERT INTO courses(courseCode, title, hours, summary, prerequisites, exclusions, recommend, distribution, breadth, program)
+                  VALUES(?,?,?,?,?,?,?,?,?,?)''', (course,
+                                                   parsedTitle if titleFind else "NULL",
+                                                   hours if hours else "NULL",
+                                                   summary if summary else "NULL",
+                                                   prerequisites if prerequisites else "NULL",
+                                                   exclusions if exclusions else "NULL",
+                                                   recommend if recommend else "NULL",
+                                                   distribution if distribution else "NULL",
+                                                   breadth if breadth else "NULL",
+                                                   program if program else "NULL"))
 
     db.commit()
     print("{0} inserted".format(course.split()))

@@ -3,7 +3,8 @@ import urllib.request
 import attributes
 
 # First page
-f = open("./data/" + attributes.torCourseList, "w")
+# f = open("./data/" + attributes.torCourseList, "w")
+f = open("./data/PortalSearch", "w")
 curPage, totalPage = 0, 1
 
 # Loop through
